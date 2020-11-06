@@ -10,6 +10,7 @@ def post_transaction(filename, title, transaction_type, value):
 def all_transaction(filename):
     line_items = []
     list_of_lines = []
+    dict_line = {}
     with open(filename, 'r') as file:
         for line in file:
             splited_line = line.split()
@@ -19,22 +20,19 @@ def all_transaction(filename):
         list_of_line = line_items[index * 3:3 * (index + 1)]
         list_of_lines.append(list_of_line)
 
-    for index in range(len(list_of_lines)):
-        key_len = len(list_of_lines[index][0]) - 1
-        key = list_of_lines[index][0][:key_len]
-        value = list_of_lines[index][1]
-        dict_line = {}
+    for items, index in zip(list_of_lines[0], range(len(list_of_lines[0]))):
+        key_len = len(list_of_lines[0][index][0]) - 1
+        key = items[0][:key_len]
+        value = items[1]
         dict_line.update({key: value})
-        print(dict_line)
 
-    return list_of_lines
-
+    return [dict_line]
 
 
-def make_appointmnet(filename, name, hour, description):
+def make_appointment(filename, name, hour, description):
     id_pacient = 1
     with open(filename, 'r') as file:
-        id_pacient = int(len(file.readlines()) / 4)
+        id_pacient = int(len(file.readlines()) / 4 + 1)
 
     with open(filename, 'a+') as file:
 
@@ -45,6 +43,7 @@ def make_appointmnet(filename, name, hour, description):
              'description: {}\n'.format(description)
              ]
         )
+
 
 
 def time_is_free(filename, hour):
