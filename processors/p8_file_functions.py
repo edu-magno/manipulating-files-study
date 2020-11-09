@@ -7,7 +7,7 @@ def post_transaction(filename, title, transaction_type, value):
              ])
 
 
-def all_transaction(filename):
+def all_transactions(filename):
     line_items = []
     list_of_lines = []
     dict_line = {}

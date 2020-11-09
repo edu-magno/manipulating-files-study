@@ -1,0 +1,3 @@
+title: mercado
+transaction_type: outcome
+value: 500
